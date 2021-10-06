@@ -235,9 +235,9 @@ def predict_result(train_data_length, test_data_length):
     I_state = []
     R_state = []
     for j in range(21):
-        III= (1 - delta[j]) * I[I.shape[0]-1, j] + (1 - I[I.shape[0]-1, j] - R[R.shape[0] - 1, j]) *sum([BT[j].x[n] * I[I.shape[0]-1, j]for n in range(21)])
+        III= (1 - delta[j]) * 1.02*I[I.shape[0]-1, j] + (1 - 1.02*I[I.shape[0]-1, j] - 1.03*R[R.shape[0] - 1, j]) *sum([BT[j].x[n] * 1.02*I[I.shape[0]-1, j]for n in range(21)])
         I_state.append(III)
-        RRR=R[R.shape[0] - 1, j]+delta[j]*I[I.shape[0] - 1, j]
+        RRR=R[R.shape[0] - 1, j]*1.03+delta[j]*I[I.shape[0]-1, j]*1.02
         R_state.append(RRR)
     I_DDD .append(I_state)
     return I_DDD , I_test
